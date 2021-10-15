@@ -38,4 +38,14 @@ class Usuario extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function corporativos()
+    {
+        return $this->hasMany(Corporativo::class,'tw_usuarios_id');
+    }
+
+    public function asignados()
+    {
+        return $this->hasMany(Corporativo::class,'FK_Asignado_id');
+    }
 }
