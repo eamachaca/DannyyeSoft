@@ -32,7 +32,7 @@ class CreateOauthAuthCodesTable extends Migration
     {
         $this->schema->create('oauth_auth_codes', function (Blueprint $table) {
             $table->string('id', 100)->primary();
-            $table->unsignedBigInteger('usuario_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('client_id');
             $table->text('scopes')->nullable();
             $table->boolean('revoked');

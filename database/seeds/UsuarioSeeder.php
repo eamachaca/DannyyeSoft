@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CorporativoSeeder extends Seeder
+class UsuarioSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class CorporativoSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Corporativo::class, 10)->create();
+        factory(App\Models\Usuario::class, 10)->create();
     }
 }

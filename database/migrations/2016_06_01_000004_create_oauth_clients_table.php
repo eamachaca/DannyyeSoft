@@ -42,7 +42,7 @@ class CreateOauthClientsTable extends Migration
     {
         $this->schema->create('oauth_clients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('usuario_id')->nullable()->index();
+            $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->string('name');
             $table->string('secret', 100)->nullable();
             $table->string('provider')->nullable();
