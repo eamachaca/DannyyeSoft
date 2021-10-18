@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Corporativo extends Model
 {
+    protected $fillable = [
+        'S_NombreCorto', 'S_NombreCompleto', 'S_LogoURL','S_DBName', 'S_DBUsuario', 'S_DBPassword',
+        'S_SystemUrl', 'S_Activo', 'D_FechaIncorporacion','tw_usuarios_id', 'FK_Asignado_id', 'S_DBPassword',
+    ];
     use SoftDeletes;
 
     public function usuario()

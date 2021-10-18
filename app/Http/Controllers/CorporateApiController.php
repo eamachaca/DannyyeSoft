@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Corporativo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class UserApiController extends Controller
+class CorporateApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        return response()->api(Usuario::all(), 200, config('api.codes.list'));
+        return response()->api(Corporativo::all(), 200, config('api.codes.list'));
     }
 
     /**
@@ -31,16 +32,16 @@ class UserApiController extends Controller
         if ($validator->fails())
             return response()->api($validator->errors(), 406, config('api.codes.request'), config('api.messages.request'));
         try {
-            $user = Usuario::create($this->getUserCreateApi($validator->validated()));
-            return response()->api($user, 201, config('api.codes.create'), config('api.messages.create'));
+            $corporate = Corporativo::create($this->getCorporateCreateApi($validator->validated()));
+            return response()->api($corporate, 201, config('api.codes.create'), config('api.messages.create'));
         } catch (\Exception $ignored) {
             return response()->api(null, 510, config('api.codes.error'), config('api.messages.error'));
         }
     }
 
-    private function getUserCreateApi($requested)
+    private function getCorporateCreateApi($requested)
     {
-        return $requested + ['S_Activo' => 1, 'S_Apellidos' => null, 'S_Nombre' => null, 'S_FotoPerfilUrl' => null, 'verified' => Str::random()];
+        return $requested + ['D_FechaIncorporacion' => Carbon::now(), 'S_Activo' => 1,];
     }
 
     /**
@@ -52,7 +53,7 @@ class UserApiController extends Controller
     public function show($id)
     {
         try {
-            return response()->api(Usuario::findOrFail($id), 202);
+            return response()->api(Corporativo::findOrFail($id), 202);
         } catch (\Exception $ignored) {
             return response()->api(null, 418, config('api.codes.request'), config('api.messages.request'));
         }
@@ -72,9 +73,9 @@ class UserApiController extends Controller
             return response()->api($validator->errors(), 406, config('api.codes.request'), config('api.messages.request'));
         }
         try {
-            $user = Usuario::findOrFail($id);
-            $user->update($this->removeNullValuesFromArray($validator->validated()));
-            return response()->api($user, 201, config('api.codes.update'), config('api.messages.update'));
+            $corporate = Corporativo::findOrFail($id);
+            $corporate->update($this->removeNullValuesFromArray($validator->validated()));
+            return response()->api($corporate, 201, config('api.codes.update'), config('api.messages.update'));
         } catch (\Exception $ignored) {
             return response()->api(null, 510, config('api.codes.error'), config('api.messages.error'));
         }
@@ -89,7 +90,7 @@ class UserApiController extends Controller
     public function destroy($id)
     {
         try {
-            return response()->api(Usuario::findOrFail($id)->delete(), 202);
+            return response()->api(Corporativo::findOrFail($id)->delete(), 202);
         } catch (\Exception $ignored) {
             return response()->api(null, 418, config('api.codes.request'), config('api.messages.request'));
         }
@@ -99,22 +100,29 @@ class UserApiController extends Controller
     {
         if ($method == 'PATCH' || $method == 'PUT')
             $default = [
-                'S_Nombre' => 'nullable|string',
-                'S_Apellidos' => 'nullable|string',
-                "S_FotoPerfilUrl" => "nullable|active_url",
+                "S_NombreCorto" => 'nullable|string',
+                "S_NombreCompleto" => 'nullable|string',
+                "S_LogoURL" => 'nullable|string',//active_url
+                "S_DBName" => 'nullable|string',
+                "S_DBUsuario" => 'nullable|string',
+                "S_DBPassword" => 'nullable|string',
+                "S_SystemUrl" => 'nullable|string',//active_url
                 "S_Activo" => 'nullable|integer',
-                "password" => "nullable|min:6|max:16"
+                "tw_usuarios_id" => 'nullable|exists:usuarios,id',
+                "FK_Asignado_id" => 'nullable|string',
             ];
         else
             $default = [
-                "username" => "required|unique:usuarios",
-                "email" => "required|email|unique:usuarios",
-                "S_Nombre" => "nullable|string",
-                "S_Apellidos" => "nullable|string",
-                "S_FotoPerfilUrl" => "nullable|active_url",
-                "password" => "required|min:6|max:16",
-                "verified" => "required",
-                "verification_token" => 'nullable',
+                "S_NombreCorto" => 'required|string',
+                "S_NombreCompleto" => 'required|string',
+                "S_LogoURL" => 'nullable|string',//active_url
+                "S_DBName" => 'required|string',
+                "S_DBUsuario" => 'required|string',
+                "S_DBPassword" => 'required|string',
+                "S_SystemUrl" => 'required|string',//active_url
+                "S_Activo" => 'required|integer',
+                "tw_usuarios_id" => 'required|exists:usuarios,id',
+                "FK_Asignado_id" => 'nullable|string',
             ];
         return $default;
     }

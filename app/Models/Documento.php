@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Documento extends Model
 {
     public $timestamps = false;
+    protected $fillable = [
+        'S_Nombre', 'N_Obligatorio', 'S_Descripcion'
+    ];
 
     public function corporativos()
     {

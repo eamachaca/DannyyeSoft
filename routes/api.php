@@ -22,4 +22,6 @@ Route::post('login', 'Auth\ApiController@login');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'Auth\ApiController@logout');
     Route::apiResource('user','UserApiController');
+    Route::apiResource('document','DocumentApiController');
+    Route::apiResource('corporate','CorporateApiController');
 });
