@@ -18,7 +18,7 @@ class Usuario extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'S_Nombre', 'S_Apellidos', 'S_FotoPerfilUrl', 'S_Activo', 'password', 'verification_token', 'verified', 'email_verified_at'
     ];
 
     /**
@@ -41,11 +41,11 @@ class Usuario extends Authenticatable
 
     public function corporativos()
     {
-        return $this->hasMany(Corporativo::class,'tw_usuarios_id');
+        return $this->hasMany(Corporativo::class, 'tw_usuarios_id');
     }
 
     public function asignados()
     {
-        return $this->hasMany(Corporativo::class,'FK_Asignado_id');
+        return $this->hasMany(Corporativo::class, 'FK_Asignado_id');
     }
 }
