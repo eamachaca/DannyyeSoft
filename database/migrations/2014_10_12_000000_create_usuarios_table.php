@@ -20,7 +20,7 @@ class CreateUsuariosTable extends Migration
             $table->string('S_Nombre', 45)->nullable();
             $table->string('S_Apellidos', 45)->nullable();
             $table->string('S_FotoPerfilUrl', 255)->nullable();
-            $table->tinyInteger('S_Activo');
+            $table->tinyInteger('S_Activo')->default(1);
             $table->string('password');
             $table->string('verification_token', 191)->nullable();
             $table->string('verified', 191);

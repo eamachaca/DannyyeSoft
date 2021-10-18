@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserApiRequest extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +25,14 @@ class UserApiRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "username"=> "required",
+            "email"=> "required|email",
+            "S_Nombre"=> "string",
+            "S_Apellidos"=> "string",
+            "S_FotoPerfilUrl"=> "string",
+            "password"=> "required|min:6|max:16",
+            "verified"=> "required",
+            "verification_token"=>'nullable'
         ];
     }
 }
