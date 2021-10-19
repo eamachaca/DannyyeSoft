@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContratosCorporativo extends Model
 {
-    public $timestamps=false;
+    protected $fillable = [
+        "D_FechaInicio", "D_FechaFin", "S_URLContrato", "tw_corporativos_id"
+    ];
+    public $timestamps = false;
 }
