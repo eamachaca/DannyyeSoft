@@ -25,12 +25,12 @@ class Corporativo extends Model
 
     public function contactos()
     {
-        return $this->hasMany(ContactosCorporativo::class,'tw_usuarios_id');
+        return $this->hasMany(ContactosCorporativo::class,'tw_corporativos_id');
     }
 
     public function empresas()
     {
-        return $this->hasMany(EmpresasCorporativo::class,'tw_usuarios_id');
+        return $this->hasMany(EmpresasCorporativo::class,'tw_corporativos_id');
     }
 
     public function documentos()
@@ -40,6 +40,9 @@ class Corporativo extends Model
             DocumentosCorporativo::class,
             'tw_corporativos_id',
             'tw_documentos_id'
-        );
+        )->withPivot([
+            'S_ArchivoUrl'
+        ]);
+
     }
 }

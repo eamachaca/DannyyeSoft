@@ -28,6 +28,6 @@ class EmpresasCorporativo extends Model
 
     public function corporativo()
     {
-        return $this->belongsTo(Corporativo::class, 'tw_usuarios_id');
+        return $this->belongsTo(Corporativo::class, 'tw_corporativos_id');
     }
 }

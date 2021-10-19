@@ -49,11 +49,16 @@ Para ambos casos he solo he agregado el componente de Laravel UI y configurar el
 Dentro de los métodos debes validar los datos que recibes y en caso de no pasar la 
 validación enviar la respuesta de error indicando los campos que fallaron.
 ```
+Revisar todos los Controladores terminados con `ApiControllers`
 
 ## Crear un método que nos permita obtener todo lo relacionado a un corporativo: le debemos pasar el id del corporativo y el método debe devolver:
-
-##Crear un método en el cual le podemos pasar el id de un documento(tw_documentos) y nos muestre todos los documentos que se han cargado en tw_documentos_corporativos correspondientes a ese id y el corporativo al que pertenecen.
+```
+Empresas asociadas al corporativo
+Documentos con el nombre del documento y la url de donde está almacenado
+Contactos de ese corporativo
+```
+Puedes revisar hasta el commit `9715527764058759c56c5233d1fe144487584cbe` para obtener todos los CRUD's creados.
+##Crear un método en el cual le podeos pasar el id de un documento(tw_documentos) y nos muestre todos los documentos que se han cargado en tw_documentos_corporativos correspondientes a ese id y el corporativo al que pertenecen.
 
 ##Implementar CORS, permitiendo el header db y todos los orígenes
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the

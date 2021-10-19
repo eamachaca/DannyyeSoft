@@ -96,6 +96,22 @@ class CorporateApiController extends Controller
         }
     }
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param integer $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getWithRelationships($id)
+    {
+        try {
+            return response()->api(Corporativo::with('empresas', 'documentos', 'contactos')->findOrFail($id), 202);
+        } catch (\Exception $ignored) {
+            return response()->api(null, 418, config('api.codes.request'), config('api.messages.request'));
+        }
+    }
+
     private function getRules($method)
     {
         if ($method == 'PATCH' || $method == 'PUT')
