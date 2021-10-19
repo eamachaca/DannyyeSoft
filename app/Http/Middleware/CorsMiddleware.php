@@ -17,5 +17,6 @@ class CorsMiddleware
     {
         return $next($request)
             ->header('Access-Control-Allow-Origin', '*');
+            //->header('Access-Control-Allow-Origin', '*');Really i don't know about db header. but if you want to tell me what command place here, without problems D:
     }
 }

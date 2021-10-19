@@ -82,7 +82,14 @@ esta solución.
 En todo caso tendrá los ejemplos en la solicitud `Corporate with Relationships` dentro de la carpeta `Corporate`
 
 ## Crear un método en el cual le podeos pasar el id de un documento(tw_documentos) y nos muestre todos los documentos que se han cargado en tw_documentos_corporativos correspondientes a ese id y el corporativo al que pertenecen.
+Puedes revisar el commit `5665204451447438d03e82cc8f9d7299ebbc7e4b` para obtener los movimientos que hice para revisar
+esta solución.
 
+En todo caso tendrá los ejemplos en la solicitud `Document with Relationships` dentro de la carpeta `Document`
 
 ## Implementar CORS, permitiendo el header db y todos los orígenes
+En el middleware `CorsMiddleware` se colocó todo este tema para agregar los headers, no pude agregar el de header DB, 
+ya que no sabía cuál era. Pero para implementar CORS lo único que hay que hacer es rellenarlo como un middleware global
+en `App\Http\Kernel`
 
+El link de la solución Postman lo encuentra en: [Enlace de Postman Eduardo Machaca](https://www.getpostman.com/collections/66aaff574d0121cb098a/)
