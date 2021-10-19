@@ -15,7 +15,7 @@ class Documento extends Model
     {
         return $this->belongsToMany(
             Corporativo::class,
-            DocumentosCorporativos::class,
+            DocumentosCorporativo::class,
             'tw_documentos_id',
             'tw_corporativos_id'
         );

@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DocumentosCorporativos extends Model
+class DocumentosCorporativo extends Model
 {
     public $timestamps = false;
+    protected $fillable = ['S_ArchivoUrl', "tw_corporativos_id", "tw_documentos_id"];
 
     public function corporativos()
     {
