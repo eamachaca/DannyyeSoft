@@ -10,6 +10,10 @@ class Documento extends Model
     protected $fillable = [
         'S_Nombre', 'N_Obligatorio', 'S_Descripcion'
     ];
+    public function documentoCorporativos()
+    {
+        return $this->hasMany(DocumentosCorporativo::class, 'tw_documentos_id');
+    }
 
     public function corporativos()
     {

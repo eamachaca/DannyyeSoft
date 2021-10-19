@@ -9,13 +9,13 @@ class DocumentosCorporativo extends Model
     public $timestamps = false;
     protected $fillable = ['S_ArchivoUrl', "tw_corporativos_id", "tw_documentos_id"];
 
-    public function corporativos()
+    public function corporativo()
     {
-        return $this->hasMany(Corporativo::class, 'tw_corporativos_id');
+        return $this->belongsTo(Corporativo::class, 'tw_corporativos_id');
     }
 
-    public function documentos()
+    public function documento()
     {
-        return $this->hasMany(Documento::class, 'tw_documentos_id');
+        return $this->belongsTo(Documento::class, 'tw_documentos_id');
     }
 }

@@ -90,6 +90,15 @@ class DocumentApiController extends Controller
         }
     }
 
+    public function getWithRelationships($id)
+    {
+        try {
+            return response()->api(Documento::with('documentoCorporativos','documentoCorporativos.corporativo')->findOrFail($id), 202);
+        } catch (\Exception $ignored) {
+            return response()->api(null, 418, config('api.codes.request'), config('api.messages.request'));
+        }
+    }
+
     private function getRules($method)
     {
         if ($method == 'PATCH' || $method == 'PUT')
