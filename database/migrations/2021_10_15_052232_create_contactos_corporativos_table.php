@@ -22,7 +22,6 @@ class CreateContactosCorporativosTable extends Migration
             $table->integer('N_TelefonoMovil')->nullable();
             $table->string('S_Email',45);
             $table->foreignId('tw_corporativos_id')->references('id')->on('corporativos');
-            $table->timestamps();
         });
     }
 

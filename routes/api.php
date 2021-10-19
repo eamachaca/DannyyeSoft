@@ -25,4 +25,5 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('document','DocumentApiController');
     Route::apiResource('corporate','CorporateApiController');
     Route::apiResource('corporate_contract','CorporateContractApiController');
+    Route::apiResource('corporate_contact','CorporateContactApiController');
 });
